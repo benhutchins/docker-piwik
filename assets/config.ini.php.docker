@@ -71,6 +71,8 @@ Plugins[] = Heartbeat
 Plugins[] = Intl
 Plugins[] = DBStats
 
+Plugins[] = WebsiteGroups
+
 [PluginsInstalled]
 PluginsInstalled[] = "Diagnostics"
 PluginsInstalled[] = "Login"
@@ -126,3 +128,5 @@ PluginsInstalled[] = "BulkTracking"
 PluginsInstalled[] = "Resolution"
 PluginsInstalled[] = "DevicePlugins"
 PluginsInstalled[] = "DBStats"
+
+PluginsInstalled[] = "WebsiteGroups"

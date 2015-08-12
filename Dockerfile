@@ -102,6 +102,13 @@ RUN wget -O misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/data
 
 ADD assets/config.ini.php.docker /var/www/html/config/config.ini.php.docker
 
+# Plugin WebsiteGroups
+RUN mkdir -p /var/www/html/plugins/WebsiteGroups && \
+	cd /var/www/html/plugins/WebsiteGroups && \
+	wget -O WebsiteGroups.tar.gz https://github.com/PiwikPRO/plugin-WebsiteGroups/archive/0.1.4.tar.gz && \
+	tar xzf WebsiteGroups.tar.gz --strip 1 && \
+	rm -f WebsiteGroups.tar.gz
+
 
 
 ADD assets/entrypoint.sh /entrypoint.sh
