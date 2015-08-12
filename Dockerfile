@@ -26,6 +26,8 @@ RUN apt-get update \
 		dnsutils \
 	&& rm -rf /var/lib/apt/lists/*
 
+
+
 # gd
 RUN buildRequirements="libpng12-dev libjpeg-dev libfreetype6-dev" \
 	&& apt-get update && apt-get install -y ${buildRequirements} \
@@ -50,6 +52,10 @@ RUN runtimeRequirements="libgeoip-dev" \
 	&& echo "extension=geoip.so" > /usr/local/etc/php/conf.d/ext-geoip.ini \
 	&& rm -rf /var/lib/apt/lists/*
 
+ADD assets/php.ini /usr/local/etc/php/conf.d/php.ini
+
+
+
 # locales
 ADD assets/locale.gen /etc/locale.gen
 RUN apt-get update \
@@ -57,27 +63,32 @@ RUN apt-get update \
 	&& rm -r /var/lib/apt/lists/* \
 	&& locale-gen
 
+
+
 # Activate login for user www-data
 RUN chsh www-data -s /bin/bash
 
 # new home folder for user
 RUN usermod -d /var/www/html www-data
 
-#ADD assets/php-fpm.conf /usr/local/etc/php-fpm.conf
-ADD assets/php.ini /usr/local/etc/php/conf.d/php.ini
-ADD assets/config.ini.php.docker /var/www/html/config/config.ini.php.docker
-ADD assets/entrypoint.sh /entrypoint.sh
 
+
+# SSMTP
 RUN apt-get update \
 	&& apt-get install -y ssmtp \
 	&& rm -rf /var/lib/apt/lists/*
 ADD assets/ssmtp.conf /opt/docker/ssmtp.conf
+
+
 
 # Cron
 RUN apt-get update \
 	&& apt-get install -y cron \
 	&& rm -rf /var/lib/apt/lists/*
 
+
+
+# Piwik
 ENV PIWIK_VERSION 2.14.3-b1
 
 RUN cd /var/www/html && \
@@ -88,6 +99,12 @@ RUN cd /var/www/html && \
 
 RUN wget -O misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
 	gunzip misc/GeoIPCity.dat.gz
+
+ADD assets/config.ini.php.docker /var/www/html/config/config.ini.php.docker
+
+
+
+ADD assets/entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]
