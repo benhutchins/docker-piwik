@@ -1,0 +1,14 @@
+mysql:
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=piwik
+    - MYSQL_USER=piwik
+    - MYSQL_PASSWORD=password
+
+piwik:
+  image: benhutchins/piwik
+  links:
+    - mysql
+  volumes:
+    - ./config:/var/www/html/config:rw
