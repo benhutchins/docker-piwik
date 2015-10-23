@@ -68,7 +68,6 @@ RUN wget http://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz \
 
 # Piwik config directory
 RUN cp -r /var/www/html/config /var/www/html/config.original/
-COPY assets/config.ini.php /var/www/html/config.original/config.ini.php.docker
 
 VOLUME /var/www/html/config/
 
