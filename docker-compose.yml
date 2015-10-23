@@ -10,5 +10,7 @@ piwik:
   image: benhutchins/piwik
   links:
     - mysql
+  ports:
+    - 80:80
   volumes:
     - ./config:/var/www/html/config:rw
