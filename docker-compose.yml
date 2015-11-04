@@ -11,6 +11,6 @@ piwik:
   links:
     - mysql
   ports:
-    - 80:80
+    - 8006:80
   volumes:
     - ./config:/var/www/html/config:rw
