@@ -1,5 +1,6 @@
 mysql:
   image: mysql
+  restart: always
   environment:
     - MYSQL_ROOT_PASSWORD=password
     - MYSQL_DATABASE=piwik
@@ -8,6 +9,7 @@ mysql:
 
 piwik:
   image: benhutchins/piwik
+  restart: always
   links:
     - mysql
   ports:
