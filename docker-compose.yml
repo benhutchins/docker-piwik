@@ -6,6 +6,8 @@ mysql:
     - MYSQL_DATABASE=piwik
     - MYSQL_USER=piwik
     - MYSQL_PASSWORD=password
+  volumes:
+    - ./database:/var/lib/mysql
 
 piwik:
   image: benhutchins/piwik
