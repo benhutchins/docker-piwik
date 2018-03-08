@@ -2,7 +2,7 @@
 
 Matomo is an open-source web analytics platform, providing detailed reports of web traffic.
 
-> [http://mattomo.org/](http://matomo.org/)
+> [http://matomo.org/](http://matomo.org/)
 
 # Usage
 
