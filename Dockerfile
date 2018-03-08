@@ -1,7 +1,7 @@
 FROM php:5.6-apache
 MAINTAINER Benjamin Hutchins <ben@hutchins.co>
 
-ENV PIWIK_VERSION 3.2.0
+ENV MATOMO_VERSION 3.3.0
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -60,13 +60,13 @@ RUN apt-get update \
   && apt-get install -y cron \
   && rm -rf /var/lib/apt/lists/*
 
-# Piwik
-RUN wget http://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz \
-    && tar --strip 1 -xzf piwik-${PIWIK_VERSION}.tar.gz \
-    && rm piwik-${PIWIK_VERSION}.tar.gz \
+# Matomo
+RUN wget http://builds.matomo.org/piwik-${MATOMO_VERSION}.tar.gz \
+    && tar --strip 1 -xzf piwik-${MATOMO_VERSION}.tar.gz \
+    && rm piwik-${MATOMO_VERSION}.tar.gz \
     && chown -R www-data:www-data tmp config
 
-# Piwik config directory
+# Matomo config directory
 RUN cp -r /var/www/html/config /var/www/html/config.original/
 
 VOLUME /var/www/html/config/
