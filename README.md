@@ -1,31 +1,31 @@
-# What is Piwik?
+# What is Matomo?
 
-Piwik is an open-source web analytics platform, providing detailed reports of web traffic.
+Matomo is an open-source web analytics platform, providing detailed reports of web traffic.
 
-> [http://piwik.org/](http://piwik.org/)
+> [http://matomo.org/](http://matomo.org/)
 
 # Usage
 
     docker run \
-      --name piwik \
+      --name matamo \
       --link some-mysql:mysql \
       -p 80:80 \
       -v $(pwd)/config:/var/www/html/config/:rw \
-      benhutchins/piwik
+      benhutchins/matomo
 
 ## Database
 
-The example above uses `--link` to connect the Piwik container with a running [mysql](https://hub.docker.com/_/mysql/) container. To start a mysql container simply run:
+The example above uses `--link` to connect the Matomo container with a running [mysql](https://hub.docker.com/_/mysql/) container. To start a mysql container simply run:
 
     docker run \
       --name some-mysql \
       -e MYSQL_ROOT_PASSWORD=password \
-      -e MYSQL_DATABASE=piwik \
-      -e MYSQL_USER=piwik \
+      -e MYSQL_DATABASE=matomo \
+      -e MYSQL_USER=matomo \
       -e MYSQL_PASSWORD=password \
       mysql
 
-You'll want to configure the database name, user and password whcih will be used as part of the Piwik installation process.
+You'll want to configure the database name, user and password whcih will be used as part of the Matomo installation process.
 
 ## Docker Compose
 
